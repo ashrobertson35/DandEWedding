@@ -1,0 +1,362 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeFile="Site.master.vb" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %></title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">   
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                positionTop();
+                $('a[href*="#"]:not([href="#theCarousel"])').click(function () {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html, body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+            });
+
+            $(window).resize(function () {
+                positionTop();
+            });
+
+            function positionTop() {
+                var height = $('#navbar').height();
+                height = height - 15;
+                $("#body-content").css({ top: height });
+            }
+
+            $('.carousel').carousel({
+                interval: 12500
+            });
+
+        </script>
+
+        <div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">David Thomas &amp; Elizabeth Rylance Wedding 2017</a>
+                </div>
+                <div class="navbar-collapse collapse">                                     
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" href="#Welcome">Welcome</a></li>
+                        <li><a runat="server" href="#RSVP">RSVP</a></li>
+                        <li><a runat="server" href="#Gallery">Gallery</a></li>
+                        <li><a runat="server" href="#TheDay">The Day</a></li>
+                        <li><a runat="server" href="#Food">Food</a></li>
+                        <li><a runat="server" href="#Venue">Venue</a></li>   
+                        <li><a runat="server" href="#LocalAmenities">Local Amenities</a></li>                                                                        
+                    </ul>                        
+                </div>
+            </div>
+        </div>
+        <div class="container body-content" id="body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <a id="Welcome" class="anchor"></a>
+            <div class="right_box anchor">
+                <img src="../Images/welcome.png" />
+                <br /><br />
+                <img src="../Images/IMG_4037.jpg" alt="Welcome from David and Elizabeth" class="rounded" />
+                <div class="welcome_text">
+                    <p><span class="firstLetter">H</span>ello! Please take a look at what we have planned to do for our wedding and reception. We
+                        have given the day a lot of thought and we would like it to be informal and fun - there is no dress code, but we have a Sage
+                        Green colour theme running throughout the wedding and reception.<br /><br />Lots of you have volunteered to help out in some way; like those
+                        playing some music or making bunting, setting up the website, supplying the wedding car or helping in the garden and we cannot
+                        thank you enough for your kindness.
+                    </p>
+                    <p>On this website we hope that you are able to find all of the information that you need about the service, reception and local
+                         amenities for those of you coming from further afield. If you need anymore information, please do not hesitate to get in touch or
+                        email us at <a href="mailto:fineanddande2017@gmail.com" target="_blank">fineanddande2017@gmail.com</a>.
+                    </p>
+                    <p>In your RSVP please do not forget to let us know your song request (along with the artist) that you would like played at the reception.
+                        We are looking forward to having a great day with you all and thank you for joining us on our special day!
+                    </p>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <br />
+            <a id="RSVP" class="anchor"></a>
+            <div class="left_box anchor">
+                <img src="../Images/rsvp.png" />
+                <br /><br />
+                <em>You can RSVP up to 7 people at once.</em>
+                <br /><br />
+                <table>
+                    <tr>
+                        <td><label for="nameTxt">Name:</label></td>
+                        <td><asp:TextBox ID="nameTxt" runat="server" CssClass="textbox"></asp:TextBox></td>
+                        <td><label for="dietTxt">Dietary Requirements:</label></td>
+                        <td><asp:TextBox ID="dietTxt" runat="server" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                        <td><label for="songTxt">Song Request:</label></td>
+                        <td><asp:TextBox runat="server" ID="songTxt" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name2Txt">Name:</label></td>
+                        <td><asp:TextBox ID="name2Txt" runat="server" CssClass="textbox"></asp:TextBox></td>
+                        <td><label for="diet2Txt">Dietary Requirements:</label></td>
+                        <td><asp:TextBox ID="diet2Txt" runat="server" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                        <td><label for="song2Txt">Song Request:</label></td>
+                        <td><asp:TextBox runat="server" ID="song2Txt" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name3Txt">Name:</label></td>
+                        <td><asp:TextBox ID="name3Txt" runat="server" CssClass="textbox"></asp:TextBox></td>
+                        <td><label for="diet3Txt">Dietary Requirements:</label></td>
+                        <td><asp:TextBox ID="diet3Txt" runat="server" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                        <td><label for="song3Txt">Song Request:</label></td>
+                        <td><asp:TextBox runat="server" ID="song3Txt" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name4Txt">Name:</label></td>
+                        <td><asp:TextBox ID="name4Txt" runat="server" CssClass="textbox"></asp:TextBox></td>
+                        <td><label for="diet4Txt">Dietary Requirements:</label></td>
+                        <td><asp:TextBox ID="diet4Txt" runat="server" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                        <td><label for="song4Txt">Song Request:</label></td>
+                        <td><asp:TextBox runat="server" ID="song4Txt" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name5Txt">Name:</label></td>
+                        <td><asp:TextBox ID="name5Txt" runat="server" CssClass="textbox"></asp:TextBox></td>
+                        <td><label for="diet5Txt">Dietary Requirements:</label></td>
+                        <td><asp:TextBox ID="diet5Txt" runat="server" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                        <td><label for="song5Txt">Song Request:</label></td>
+                        <td><asp:TextBox runat="server" ID="song5Txt" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name6Txt">Name:</label></td>
+                        <td><asp:TextBox ID="name6Txt" runat="server" CssClass="textbox"></asp:TextBox></td>
+                        <td><label for="diet6Txt">Dietary Requirements:</label></td>
+                        <td><asp:TextBox ID="diet6Txt" runat="server" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                        <td><label for="song6Txt">Song Request:</label></td>
+                        <td><asp:TextBox runat="server" ID="song6Txt" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name7Txt">Name:</label></td>
+                        <td><asp:TextBox ID="name7Txt" runat="server" CssClass="textbox"></asp:TextBox></td>
+                        <td><label for="diet7Txt">Dietary Requirements:</label></td>
+                        <td><asp:TextBox ID="diet7Txt" runat="server" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                        <td><label for="song7Txt">Song Request:</label></td>
+                        <td><asp:TextBox runat="server" ID="song7Txt" CssClass="textbox" placeholder="Optional"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td><label for="rsvpSel">I/We will be:</label></td>
+                        <td>
+                            <asp:RadioButtonList runat="server" ID="rsvpRB" CellPadding="10" CellSpacing="10">
+                                <asp:ListItem Selected="True" Text="  Attending" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="  Not Attending" Value="2"></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </td>    
+                        <td colspan="2"></td>                   
+                    </tr>
+                    <tr>
+                        <td colspan="6">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <asp:Label runat="server" ID="errorLbl" Visible="false"></asp:Label>
+                        </td>
+                        <td colspan="3">
+                            <asp:Button runat="server" ID="sendBtn" Text="Send RSVP" CssClass="sendBtn" />
+                            <div style="clear:both;"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+            <a id="Gallery" class="anchor"></a>
+            <div class="right_box anchor">
+                <img src="../Images/gallery.png" />
+                <br /><br />
+                <center>
+                <div class="carousel slide" id="theCarousel">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img alt="Gallery Pic 1" src="../Images/IMG_0234.jpg" class="img-responsive" />
+                  </div>
+                  <div class="item">
+                    <img alt="Gallery Pic 2" src="../Images/IMG_0252.jpg" class="img-responsive" />
+                  </div>
+                  <div class="item">
+                    <img alt="Gallery Pic 3" src="../Images/IMG_0341.jpg" class="img-responsive rotated" />
+                  </div>
+                  <div class="item">
+                    <img alt="Gallery Pic 4" src="../Images/IMG_0529.jpg" class="img-responsive" />
+                  </div>
+                  <div class="item">
+                    <img alt="Gallery Pic 5" src="../Images/IMG_0614.jpg" class="img-responsive" />
+                  </div>
+                  <div class="item">
+                    <img alt="Gallery Pic 6" src="../Images/IMG_3259.jpg" class="img-responsive" />
+                  </div>
+                    <div class="item">
+                    <img alt="Gallery Pic 7" src="../Images/IMG_3621.jpg" class="img-responsive rotated" />
+                  </div>
+                    <div class="item">
+                    <img alt="Gallery Pic 8" src="../Images/IMG_3781.jpg" class="img-responsive semirotate" />
+                  </div>
+                    <div class="item">
+                    <img alt="Gallery Pic 9" src="../Images/holiday.jpg" class="img-responsive" />
+                  </div>
+                    <div class="item">
+                    <img alt="Gallery Pic 10" src="../Images/car.jpg" class="img-responsive" />
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+              </div>
+                </center>
+            </div>
+            <br />
+            <a id="TheDay" class="anchor"></a>
+            <div class="left_box anchor">
+                <img src="../Images/the_day.png" />
+                <br /><br />
+                <p><em>Please note that all timings are approximate.</em></p>
+                <table style="width:100%;">
+                    <tr>
+                        <td><strong>09:00</strong></td>
+                        <td>Sittingbourne Parkrun</td>
+                    </tr>
+                    <tr>
+                        <td><strong>13:00</strong></td>
+                        <td>Guests Gather at Archbishop's Palace</td>
+                    </tr>
+                    <tr>
+                        <td><strong>13:30</strong></td>
+                        <td>Wedding Ceremony</td>
+                    </tr>
+                    <tr>
+                        <td><strong>15:15</strong></td>
+                        <td>Canap&eacute;s served in our Garden</td>
+                    </tr>
+                    <tr>
+                        <td><strong>16:30</strong></td>
+                        <td>Hog Roast served</td>
+                    </tr>
+                    <tr>
+                        <td><strong>From 19:00</strong></td>
+                        <td>Evening Guests arrive - Disco</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thereafter</strong></td>
+                        <td>Live Music and Disco until Midnight</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Friday 11th August</strong></td>
+                        <td>Icebreaker Dinner (Location TBC)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sunday 13th August</strong></td>
+                        <td>Brunch in the Garden</td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+            <a id="Food" class="anchor"></a>
+            <div class="right_box anchor">
+                <img src="../Images/food.png" />
+                <br /><br />
+                <p><strong>Hog Roast:</strong><br />
+                    Australian Style Catering - <a style="color:blue;" href="http://www.australianstylecatering.co.uk" target="_blank">www.australianstylecatering.co.uk</a>
+                </p>
+                <br />
+                <p><em>There will also be canap&eacute;s and hog roast served in the afternoon and bacon rolls in the evening.</em></p>
+            </div>
+            <br />
+            <a id="Venue" class="anchor"></a>
+            <div class="left_box">
+                <img src="../Images/venue.png" />     
+                <br /><br />                
+                 <p>The ceremony will take place at The Archbishop's Palace. You can visit the venue's website here:<br />
+                     <a href="http://www.akentishceremony.com/kcc-register-offices/the-archbishop-s-palace" target="_blank">
+                         www.akentishceremony.com/kcc-register-offices/the-archbishop-s-palace</a>
+                 </p>     
+                <br />
+                <center>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2496.178468264502!2d0.5189575158193441!3d51.27103387959701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xee2ba1fbd75b3e5a!2sArchbishop&#39;s+Palace!5e0!3m2!1sen!2suk!4v1486928674449"
+                     width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </center>
+            </div>
+            <br />
+            <a id="LocalAmenities" class="anchor"></a>
+            <div class="right_box">
+                <img src="../Images/localinfo.png" />     
+                <br /><br />                                
+                <center>
+                    <h3><u>Hotels/B&Bs</u></h3>     
+                    <br />
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d79693.27905144986!2d0.5228469!3d51.3770509!3m2!1i1024!2i768!4f13.1!2m1!1sbed+and+breakfast+near+me89db!5e0!3m2!1sen!2suk!4v1487620863845"
+                         width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </center>
+                <br /><br />                                
+                <center>
+                    <h3><u>Restaurants</u></h3>     
+                    <br />
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d9965.244000060304!2d0.6082808071108858!3d51.3605791272294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1srestaurants!5e0!3m2!1sen!2suk!4v1487536799471"
+                         width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </center>
+            </div>
+            <hr />
+            <footer>
+                <p>&copy; David Thomas &amp; Elizabeth Rylance Wedding 2017</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
